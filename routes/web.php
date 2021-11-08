@@ -14,5 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
+});
+
+// Route::group(['prefix' => 'api', 'middleware' => ['check_api', /*'check_user'*/]], function () {
+Route::group(['prefix' => 'api'], function () {
+    Route::post('user/login', 'Api\UserController@login');
+    Route::post('user/addUser', 'Api\UserController@addUser');
+
+    Route::post('user/addList', 'Api\UserController@addList');
+    
+    Route::get('home', 'Api\UserController@getList');
 });
